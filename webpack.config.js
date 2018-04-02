@@ -1,0 +1,34 @@
+var debug = prorcess.env.NODE_ENV !== "production";
+const path = require('path');
+var webpack = require ('webpack');
+
+module.export = {
+    context: __dirname,
+    devtoll: debug ? "inline-sourcemap" : false,
+    entry: "./js/script.js",
+    output: {
+       path: __dirname + "/js",
+       filename: "script.min.js" 
+    },
+    plugins: debug ? [] : [
+    	new webpack.optimize.OccurenceOrderPlugin(),
+    	new webpack.optimize.UglifyJsPlugin({mangle: false, sourcemap: false}),
+    ],
+};
+
+// var debug = process.env.NODE_ENV !== "production";
+// var webpack = require('webpack');
+
+// module.exports = {
+//   context: __dirname,
+//   devtool: debug ? "inline-sourcemap" : false,
+//   entry: "./js/scripts.js",
+//   output: {
+//     path: __dirname + "/js",
+//     filename: "scripts.min.js"
+//   },
+//   plugins: debug ? [] : [
+//     new webpack.optimize.OccurenceOrderPlugin(),
+//     new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false }),
+//   ],
+// };
